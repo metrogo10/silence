@@ -9,9 +9,11 @@ mdb.once('open', function (callback) {
 });
 
 var personSchema = mongoose.Schema({
-  name: String,
+  username: String,
   age: String,
-  species: String
+  userLevel: String,
+  email: String,
+
 });
 
 
@@ -37,13 +39,14 @@ exports.create = function (req, res) {
 
 exports.createPerson = function (req, res) {
   var person = new Person({
-    name: req.body.name,
+    username: req.body.userName,
     age: req.body.age,
-    species: req.body.species
+    email: req.body.email,
+    userLevel: req.body.userLevel,
   });
   person.save(function (err, person) {
     if (err) return console.error(err);
-    console.log(req.body.name + ' added');
+    console.log(req.body.userName + ' added');
   });
   res.redirect('/');
 };
@@ -61,12 +64,13 @@ exports.edit = function (req, res) {
 exports.editPerson = function (req, res) {
   Person.findById(req.params.id, function (err, person) {
     if (err) return console.error(err);
-    person.name = req.body.name;
+    person.username = req.body.userName;
     person.age = req.body.age;
-    person.species = req.body.species;
+    person.email = req.body.email;
+    person.userLevel = req.body.userLevel;
     person.save(function (err, person) {
       if (err) return console.error(err);
-      console.log(req.body.name + ' updated');
+      console.log(req.body.userName + ' updated');
     });
   });
   res.redirect('/');
@@ -84,7 +88,7 @@ exports.details = function (req, res) {
   Person.findById(req.params.id, function (err, person) {
     if (err) return console.error(err);
     res.render('details', {
-      title: person.name + "'s Details",
+      title: person.userName + "'s Details",
       person: person
     });
   });

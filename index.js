@@ -34,6 +34,10 @@ app.get('/public', function(req, res){
   res.render('public');
 });
 
+app.get('/create', function(req, res){
+  res.render('create');
+});
+
 app.get('/private', checkAuth, function(req, res){
   res.render('private');
 });

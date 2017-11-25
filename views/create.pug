@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  form(id='form', method='post', action='/create')
+  form(id='form', method='post',onsubmit="validate()" action='/')
     label(for='UserName') UserName: 
     input(type='text', name='UserName')
     br
@@ -19,4 +19,24 @@ block content
     label(for='age') Age: 
     input(type='text', name='age')
     br
+    h2 Questions(will be deleted after selecting)
+    div(class="button-group1" id ="div1")
+      h2(id="question1")
+      button(id="b1" type="button" onclick="myfunction1()")
+      button(id="b2" type="button" onclick="myfunction2()")
+      button(id="b3" type="button" onclick="myfunction3()")
+      button(id="b4" type="button" onclick="myfunction4()")
+    div(class="button-group2" id ="div2")
+      h2(id="question2")    
+      button(id="b5" type="button" onclick="myfunction5()")
+      button(id="b6" type="button" onclick="myfunction6()")
+      button(id="b7" type="button" onclick="myfunction7()")
+      button(id="b8" type="button" onclick="myfunction8()")
+    div(class="button-group3" id ="div3")
+      h2(id="question3" )
+      button(id="b9"  type="button" onclick="myfunction9()")
+      button(id="b10" type="button"  onclick="myfunction10()")
+      button(id="b11" type="button"  onclick="myfunction11()")
+      button(id="b12" type="button"  onclick="myfunction12()")
     input(type='submit', value='Add Person')
+    script(src="script.js")
