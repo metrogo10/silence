@@ -38,6 +38,10 @@ app.get('/create', function(req, res){
   res.render('create');
 });
 
+app.get('/graphs', function(req, res){
+  res.render('graphs');
+});
+
 app.get('/private', checkAuth, function(req, res){
   res.render('private');
 });
