@@ -1,12 +1,12 @@
 html {
-  background-color: #227;
+  background-color: #141D29;
 }
 body {
   font-family: verdana, arial, sans-serif;
   font-size: 12px;
   width: 80%;
   padding: 20px;
-  background-color: #eeb;
+  background-color: #486273;
 }
 
 table.gridtable {
@@ -41,4 +41,16 @@ button {
 }
 
 legend {
+}
+
+.space{
+  margin-bottom: 8px;
+}
+
+.space-top{
+  margin-top: 8px;
+}
+
+.textspot{
+  font-size: 16px;
 }
