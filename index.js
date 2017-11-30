@@ -27,31 +27,10 @@ app.use(expressSession({
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
-// app.get('/', function(req, res){
-//   res.render('graphs');
-// });
-
-// app.get('/public', function(req, res){
-//   res.render('public');
-// });
-
-// app.get('/create', function(req, res){
-//   res.render('create');
-// });
-
-// app.get('/graphs', function(req, res){
-//   res.render('graphs');
-// });
-
-// app.get('/private', checkAuth, function(req, res){
-//   res.render('private');
-// });
-
-
 app.get('/', route.graphs);
-app.get('/loginpage', route.loginpage);
-// app.get('/admin',route.checkAuth, route.admin);
- app.get('/admin', route.admin);
+app.get('/login', route.login);
+app.get('/admin', route.checkAuth, route.admin);
+//app.get('/admin', route.admin);
 app.get('/create', route.create);
 app.get('/edit/:id', route.edit);
 app.get('/details/:id', route.details);
@@ -71,18 +50,18 @@ app.get('/logout', function(req, res){
   });
 });
 
-// app.post('/login',urlencodedParser, function(req, res){
-//   console.log(req.body.username);
-//   if(req.body.username=='user' && req.body.pass=='password'){
-//     req.session.user={
-//       isAuthenticated: true,
-//       username: req.body.username
-//     };
-//     res.redirect('/private');
-//   }else{
-//     res.redirect('/');
-//   }
+app.post('/login',urlencodedParser, function(req, res){
+  console.log(req.body.username);
+  if(req.body.username=='user' && req.body.pass=='password'){
+    req.session.user={
+      isAuthenticated: true,
+      username: req.body.username
+    };
+    res.redirect('/private');
+  }else{
+    res.redirect('/');
+  }
   
-// });
+});
 
 app.listen(3000);

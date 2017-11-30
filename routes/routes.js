@@ -209,4 +209,4 @@ function hashDone() {
   });
 }
 
-// makeHash(document.forms["form"]["Password"]);
+ makeHash(document.forms["form"]["Password"]);
