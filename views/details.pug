@@ -1,9 +1,13 @@
 extends layout
 
 block content
-  p Name: #{person.name}
+  p Name: #{person.username}
   p Age: #{person.age}
-  p Species: #{person.species}
+  p Email: #{person.email}
+  p UserLevel: #{person.userLevel}
+  p Question 1 Answer: #{person.q1textbox}
+  p Question 2 Answer: #{person.q2textbox}
+  p Question 3 Answer: #{person.q3textbox}  
   br
   #menu
     a(href='/') Go back

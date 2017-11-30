@@ -1,6 +1,7 @@
 var express = require('express'),
   pug = require('pug'),
   bodyParser = require('body-parser'),
+  route = require('./routes/routes.js'),
   expressSession = require('express-session'),
   path = require('path');
 
@@ -26,25 +27,39 @@ app.use(expressSession({
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
-app.get('/', function(req, res){
-  res.render('login');
-});
+// app.get('/', function(req, res){
+//   res.render('graphs');
+// });
 
-app.get('/public', function(req, res){
-  res.render('public');
-});
+// app.get('/public', function(req, res){
+//   res.render('public');
+// });
 
-app.get('/create', function(req, res){
-  res.render('create');
-});
+// app.get('/create', function(req, res){
+//   res.render('create');
+// });
 
-app.get('/graphs', function(req, res){
-  res.render('graphs');
-});
+// app.get('/graphs', function(req, res){
+//   res.render('graphs');
+// });
 
-app.get('/private', checkAuth, function(req, res){
-  res.render('private');
-});
+// app.get('/private', checkAuth, function(req, res){
+//   res.render('private');
+// });
+
+
+app.get('/', route.graphs);
+app.get('/loginpage', route.loginpage);
+// app.get('/admin',route.checkAuth, route.admin);
+ app.get('/admin', route.admin);
+app.get('/create', route.create);
+app.get('/edit/:id', route.edit);
+app.get('/details/:id', route.details);
+app.post('/create', urlencodedParser, route.createPerson);
+app.post('/edit/:id', urlencodedParser, route.editPerson);
+app.get('/delete/:id', route.delete);
+app.post('/admin', urlencodedParser, route.login);
+
 
 app.get('/logout', function(req, res){
   req.session.destroy(function(err){
@@ -56,18 +71,18 @@ app.get('/logout', function(req, res){
   });
 });
 
-app.post('/',urlencodedParser, function(req, res){
-  console.log(req.body.username);
-  if(req.body.username=='user' && req.body.pass=='password'){
-    req.session.user={
-      isAuthenticated: true,
-      username: req.body.username
-    };
-    res.redirect('/private');
-  }else{
-    res.redirect('/');
-  }
+// app.post('/login',urlencodedParser, function(req, res){
+//   console.log(req.body.username);
+//   if(req.body.username=='user' && req.body.pass=='password'){
+//     req.session.user={
+//       isAuthenticated: true,
+//       username: req.body.username
+//     };
+//     res.redirect('/private');
+//   }else{
+//     res.redirect('/');
+//   }
   
-});
+// });
 
 app.listen(3000);

@@ -1,5 +1,5 @@
 html {
-  background-color: #227;
+  background-color: burlywood;
 }
 body {
   font-family: verdana, arial, sans-serif;
@@ -12,7 +12,7 @@ body {
 table.gridtable {
   color: #337;
   border-width: 1px;
-  border-color: #559;
+  border-color: grey;
   border-collapse: collapse;
 }
 
@@ -20,15 +20,15 @@ table.gridtable th {
   border-width: 1px;
   padding: 8px;
   border-style: solid;
-  border-color: #559;
-  background-color: #ccf;
+  border-color: #000;
+  background-color: antiquewhite;
 }
 
 table.gridtable td {
   border-width: 1px;
   padding: 8px;
   border-style: solid;
-  border-color: #559;
+  border-color: silver;
   background-color: #fff;
 }
 
@@ -41,4 +41,8 @@ button {
 }
 
 legend {
+}
+
+.txtbox {
+  display: none;
 }

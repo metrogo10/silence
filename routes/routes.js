@@ -2,17 +2,54 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/data');
 
+var bcrypt = require('bcrypt-nodejs');
+var myHash;
+
+var expressSession = require('express-session');
+
+
 var mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error:'));
 mdb.once('open', function (callback) {
 
 });
 
+var answerSchema = mongoose.Schema({
+   ans1clicked:Number,
+   ans2clicked:Number,
+   ans3clicked:Number,
+   ans4clicked:Number,
+   ans5clicked:Number,
+   ans6clicked:Number,
+   ans7clicked:Number,
+   ans8clicked:Number,
+   ans9clicked:Number,
+   ans10clicked:Number,
+   ans11clicked:Number,
+   ans12clicked:Number,
+   q1att:Number,
+   q2att:Number,
+   q3att:Number,
+
+});
+
+var nums = mongoose.model('Numbers_Collection', answerSchema);
+
+var n = new nums;
+
+
+
+
 var personSchema = mongoose.Schema({
   username: String,
   age: String,
   userLevel: String,
   email: String,
+  password: String,
+  PasswordSalt: String,
+  q1textbox: String,
+  q2textbox: String,
+  q3textbox: String
 
 });
 
@@ -25,7 +62,7 @@ exports.index = function (req, res) {
   Person.find(function (err, person) {
     if (err) return console.error(err);
     res.render('index', {
-      title: 'People List',
+      title: 'Users List',
       people: person
     });
   });
@@ -33,20 +70,38 @@ exports.index = function (req, res) {
 
 exports.create = function (req, res) {
   res.render('create', {
-      title: 'Add Person'
+    title: 'Add User'
+  });
+};
+
+exports.graphs = function (req, res) {
+  res.render('graphs', {
+    title: 'Graphs Page'
+  });
+};
+
+exports.loginpage = function (req, res) {
+  res.render('login', {
+    title: 'Login Page'
   });
 };
 
 exports.createPerson = function (req, res) {
+
   var person = new Person({
-    username: req.body.userName,
+    username: req.body.UserName,
     age: req.body.age,
-    email: req.body.email,
-    userLevel: req.body.userLevel,
+    email: req.body.Email,
+    userLevel: makeHash(req.body.userLevel),
+    password: req.body.Password,
+    q1textbox: req.body.q1textbox,
+    q2textbox: req.body.q2textbox,
+    q3textbox: req.body.q3textbox
   });
   person.save(function (err, person) {
     if (err) return console.error(err);
-    console.log(req.body.userName + ' added');
+    console.log(req.body.UserName + ' added');
+    console.log(req.body.Password + ' pass');
   });
   res.redirect('/');
 };
@@ -55,7 +110,7 @@ exports.edit = function (req, res) {
   Person.findById(req.params.id, function (err, person) {
     if (err) return console.error(err);
     res.render('edit', {
-      title: 'Edit Person',
+      title: 'Edit User',
       person: person
     });
   });
@@ -64,23 +119,26 @@ exports.edit = function (req, res) {
 exports.editPerson = function (req, res) {
   Person.findById(req.params.id, function (err, person) {
     if (err) return console.error(err);
-    person.username = req.body.userName;
+    person.username = req.body.UserName;
     person.age = req.body.age;
-    person.email = req.body.email;
+    person.email = req.body.Email;
     person.userLevel = req.body.userLevel;
+    person.q1textbox = req.body.q1textbox;
+    person.q2textbox = req.body.q2textbox;
+    person.q3textbox = req.body.q3textbox;
     person.save(function (err, person) {
       if (err) return console.error(err);
-      console.log(req.body.userName + ' updated');
+      console.log(req.body.UserName + ' updated');
     });
   });
-  res.redirect('/');
+  res.redirect('/admin');
 
 };
 
 exports.delete = function (req, res) {
   Person.findByIdAndRemove(req.params.id, function (err, person) {
     if (err) return console.error(err);
-    res.redirect('/');
+    res.redirect('/admin');
   });
 };
 
@@ -88,8 +146,67 @@ exports.details = function (req, res) {
   Person.findById(req.params.id, function (err, person) {
     if (err) return console.error(err);
     res.render('details', {
-      title: person.userName + "'s Details",
+      title: person.username + "'s Details",
       person: person
     });
   });
 };
+
+//push data to pug via -var(javascript in pug)
+
+exports.login = function (req, res) {
+  console.log(req.body.UserName);
+  // Person.findById(req.params.id, function (err, person) {
+
+    if (req.body.UserName =="user" && req.body.Password == "password") {
+      req.session.user = {
+        isAuthenticated: true,
+        username: req.body.username
+      };
+      res.redirect('/admin');
+    } else {
+      res.redirect('/');
+    }
+  // });
+}
+
+exports.checkAuth = function (req, res) {
+  if (req.session.user && req.session.user.isAuthenticated) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
+
+
+
+exports.admin = function (req, res) {
+  Person.find(function (err, person) {
+    if (err) return console.log(err);
+    res.render("index", {
+title: "User List",
+people: person
+    });
+  });
+}
+
+function makeHash(the_str) {
+  bcrypt.hash(the_str, null, null, function (err, hash) {
+    myHash = hash;
+    hashDone();
+  });
+
+}
+
+function hashDone() {
+  console.log("hashdone " + myHash);
+  bcrypt.compare("bacon", myHash, function (err, res) {
+    console.log(res);
+  });
+
+  bcrypt.compare("veggies", myHash, function (err, res) {
+    console.log(res);
+  });
+}
+
+// makeHash(document.forms["form"]["Password"]);

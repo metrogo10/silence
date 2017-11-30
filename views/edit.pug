@@ -3,15 +3,42 @@ extends layout
 block content
   form(id='form', method='post', action='/edit/' + person.id)
     label(for='UserName') UserName: 
-    input(type='text', name='UserName' value=person.UserName)
-    br
-    label(for='age') Age: 
-    input(type='text', name='age' value=person.age)
+    input(type='text', name='UserName' value=person.username)
     br
     label(for='userLevel') UserLevel: 
-      option(selected = person.UserLevel) #{person.UserLevel}
     select(name='userLevel')
+      option(selected = person.userLevel) #{person.userLevel}
+
       option(value="Regular") Regular
       option(value="Admin") Admin
     br
-    input(type='submit', value='Update Person')
+    label(for='Email') Email: 
+    input(type='text', name='Email' value = person.email)
+    br
+    label(for='age') Age: 
+    input(type='text', name='age' value = person.age)
+    br
+    h2 Questions(will be deleted after selecting)
+    div(class="button-group1" id ="div1")
+      h2(id="question1")
+      button(id="b1" type="button" onclick="myfunction1()")
+      button(id="b2" type="button" onclick="myfunction2()")
+      button(id="b3" type="button" onclick="myfunction3()")
+      button(id="b4" type="button" onclick="myfunction4()")
+      input(type='text',id="q1textbox", name="q1textbox", class="txtbox", value=person.q1textbox )      
+    div(class="button-group2" id ="div2")
+      h2(id="question2")    
+      button(id="b5" type="button" onclick="myfunction5()")
+      button(id="b6" type="button" onclick="myfunction6()")
+      button(id="b7" type="button" onclick="myfunction7()")
+      button(id="b8" type="button" onclick="myfunction8()")
+      input(type='text',id="q2textbox", name="q2textbox", class="txtbox", value=person.q2textbox)            
+    div(class="button-group3" id ="div3")
+      h2(id="question3" )
+      button(id="b9"  type="button" onclick="myfunction9()")
+      button(id="b10" type="button"  onclick="myfunction10()")
+      button(id="b11" type="button"  onclick="myfunction11()")
+      button(id="b12" type="button"  onclick="myfunction12()")
+      input(type='text',id="q3textbox", name="q3textbox", class="txtbox", value=person.q3textbox)            
+    input(type='submit', value='Update User')
+    script(src="/script.js", type="text/javascript")
