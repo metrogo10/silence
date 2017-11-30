@@ -4,45 +4,65 @@ myCanvas.height = 300;
   
 var ctx = myCanvas.getContext("2d");
 
-var ans1=3;
-var ans2=4;
-var ans3=3;
-var ans4=5;
-var ans5=5;
-var ans6=6;
-var ans7=2;
-var ans8=4;
-var ans9=6;
-var ans10=4;
-var ans11=5;
-var ans12=6;
+var q1 = "What color is the sky?";
+var q2 = "What color is the sun?";
+var q3 = "What color is the snow?";
 
-var q1attemtps=21;
+var ans1=0;
+var ans2=0;
+var ans3=0;
+var ans4=0;
+var ans5=0;
+var ans6=0;
+var ans7=0;
+var ans8=0;
+var ans9=0;
+var ans10=0;
+var ans11=0;
+var ans12=0;
+
+
+var ans1clicked=0;
+var ans2clicked=0;
+var ans3clicked=0;
+var ans4clicked=0;
+var ans5clicked=0;
+var ans6clicked=0;
+var ans7clicked=0;
+var ans8clicked=0;
+var ans9clicked=0;
+var ans10clicked=0;
+var ans11clicked=0;
+var ans12clicked=0;
+var q1attemtps=0;
 
 var q2score=0;
-var q2attemtps=21;
+var q2attemtps=0;
 
 var q3score=0;
-var q3attemtps=21;
+var q3attemtps=0;
 
-var q1answers = {
-    "blue" : ans1/q1attemtps,
-    "white": ans2/q1attemtps,
-    "green": ans3/q1attemtps,
-    "black": ans4/q1attemtps
-};
-var q2answers = {
-    "blue" : ans5/q1attemtps,
-    "red": ans6/q1attemtps,
-    "yellow": ans7/q1attemtps,
-    "purple": ans8/q1attemtps
-};
-var q3answers = {
-    "blue" : ans9/q1attemtps,
-    "white": ans10/q1attemtps,
-    "yellow": ans11/q1attemtps,
-    "black": ans12/q1attemtps
-};
+
+var q1arr = ["blue","white","green","black"];
+var q2arr = ["blue","red","yellow","purple"];
+var q3arr = ["blue","white","yellow","black"];
+
+document.getElementById("question1").innerHTML = q1;
+document.getElementById("question2").innerHTML = q2;
+document.getElementById("question3").innerHTML = q3;
+
+document.getElementById("b1").innerHTML = q1arr[0];
+document.getElementById("b2").innerHTML = q1arr[1];
+document.getElementById("b3").innerHTML = q1arr[2];
+document.getElementById("b4").innerHTML = q1arr[3];
+document.getElementById("b5").innerHTML = q2arr[0];
+document.getElementById("b6").innerHTML = q2arr[1];
+document.getElementById("b7").innerHTML = q2arr[2];
+document.getElementById("b8").innerHTML = q2arr[3];
+document.getElementById("b9").innerHTML = q3arr[0];
+document.getElementById("b10").innerHTML = q3arr[1];
+document.getElementById("b11").innerHTML = q3arr[2];
+document.getElementById("b12").innerHTML = q3arr[3];
 
 function drawLine(ctx, startX, startY, endX, endY,color){
     ctx.save();

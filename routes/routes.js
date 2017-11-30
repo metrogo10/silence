@@ -168,7 +168,7 @@ exports.login = function (req, res) {
   //     res.redirect('/');
   //   }
 
-    if (req.body.username =="user" && req.body.pass == "password") {
+    if (req.body.username =="user" && req.body.pass == "pass") {
       req.session.user = {
         isAuthenticated: true,
         username: req.body.username
