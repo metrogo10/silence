@@ -141,7 +141,7 @@ function myfunction11() {
     q3attemtps++;
     ans11++;
     document.getElementById("div3").style.display = "none";
-document.getElementById("q3textbox").value = document.getElementById("b10").innerHTML 
+document.getElementById("q3textbox").value = document.getElementById("b11").innerHTML 
 
 }
 function myfunction12() {
@@ -149,7 +149,6 @@ function myfunction12() {
     ans12++;
     document.getElementById("div3").style.display = "none";
     document.getElementById("q3textbox").value = document.getElementById("b12").innerHTML 
-    
 }
 
 

@@ -50,15 +50,15 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 app.get('/', route.graphs);
 app.get('/loginpage', route.loginpage);
-// app.get('/admin',route.checkAuth, route.admin);
- app.get('/admin', route.admin);
+app.get('/admin',route.checkAuth, route.admin);
+//  app.get('/admin', route.admin);
 app.get('/create', route.create);
 app.get('/edit/:id', route.edit);
 app.get('/details/:id', route.details);
 app.post('/create', urlencodedParser, route.createPerson);
 app.post('/edit/:id', urlencodedParser, route.editPerson);
 app.get('/delete/:id', route.delete);
-app.post('/admin', urlencodedParser, route.login);
+app.post('/loginpage', urlencodedParser, route.login);
 
 
 app.get('/logout', function(req, res){
@@ -66,10 +66,17 @@ app.get('/logout', function(req, res){
     if(err){
       console.log(err);
     }else{
-      res.redirect('/');
+      res.redirect('/loginpage');
     }
   });
 });
+
+
+// app.get('/', function(req,res){
+//   req.session.name = req.session.name || new Date().toUTCString();
+//   console.log(req.sessionID);
+//   res.send(req.session.name);
+//  });
 
 // app.post('/login',urlencodedParser, function(req, res){
 //   console.log(req.body.username);

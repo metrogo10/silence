@@ -92,8 +92,8 @@ exports.createPerson = function (req, res) {
     username: req.body.UserName,
     age: req.body.age,
     email: req.body.Email,
-    userLevel: makeHash(req.body.userLevel),
-    password: req.body.Password,
+    userLevel: req.body.userLevel,
+    password: makeHash(req.body.Password),
     q1textbox: req.body.q1textbox,
     q2textbox: req.body.q2textbox,
     q3textbox: req.body.q3textbox
@@ -155,10 +155,20 @@ exports.details = function (req, res) {
 //push data to pug via -var(javascript in pug)
 
 exports.login = function (req, res) {
-  console.log(req.body.UserName);
   // Person.findById(req.params.id, function (err, person) {
+  //   console.log(person.username);
+  //   if (req.body.username == person.username && req.body.pass == person.password) {
+  //     req.session.user = {
+  //       isAuthenticated: true,
+  //       username: req.body.username
+  //     };
+  //     if(req.body.userLevel.value == "Admin")
+  //     res.redirect('/admin');
+  //   } else {
+  //     res.redirect('/');
+  //   }
 
-    if (req.body.UserName =="user" && req.body.Password == "password") {
+    if (req.body.username =="user" && req.body.pass == "password") {
       req.session.user = {
         isAuthenticated: true,
         username: req.body.username
@@ -170,11 +180,11 @@ exports.login = function (req, res) {
   // });
 }
 
-exports.checkAuth = function (req, res) {
+exports.checkAuth = function (req, res, next) {
   if (req.session.user && req.session.user.isAuthenticated) {
     next();
   } else {
-    res.redirect('/');
+    res.redirect('/loginpage');
   }
 }
 
