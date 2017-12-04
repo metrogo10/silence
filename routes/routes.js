@@ -85,7 +85,7 @@ exports.loginpage = function (req, res) {
     title: 'Login Page'
   });
 };
-
+var people1 = [];
 exports.createPerson = function (req, res) {
 
   var person = new Person({
@@ -100,6 +100,7 @@ exports.createPerson = function (req, res) {
   });
   person.save(function (err, person) {
     if (err) return console.error(err);
+    people1.push(person);
     console.log(req.body.UserName + ' added');
     console.log(req.body.Password + ' pass');
   });
@@ -113,6 +114,10 @@ exports.edit = function (req, res) {
       title: 'Edit User',
       person: person
     });
+    for(i=0;i<people1.length;i++)
+    {
+      if(person===people1[i]){people1.splice(i,1);}
+    }
   });
 };
 
@@ -128,6 +133,7 @@ exports.editPerson = function (req, res) {
     person.q3textbox = req.body.q3textbox;
     person.save(function (err, person) {
       if (err) return console.error(err);
+      people1.push(person);
       console.log(req.body.UserName + ' updated');
     });
   });
@@ -138,6 +144,10 @@ exports.editPerson = function (req, res) {
 exports.delete = function (req, res) {
   Person.findByIdAndRemove(req.params.id, function (err, person) {
     if (err) return console.error(err);
+    for(j=0;j<people1.length;j++)
+    {
+      if(person===people1[j]){people1.splice(j,1);}
+    }
     res.redirect('/index');
   });
 };

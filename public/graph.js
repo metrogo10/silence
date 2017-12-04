@@ -5,27 +5,27 @@ var ctx = myCanvas.getContext("2d");
 var ctx = myCanvas2.getContext("2d");
 var ctx = myCanvas3.getContext("2d");
 
-var ans1=scripts.js.ans1clicked;
-var ans2=scripts.js.ans2clicked;
-var ans3=scripts.js.ans3clicked;
-var ans4=scripts.js.ans4clicked;
-var ans5=scripts.js.ans5clicked;
-var ans6=scripts.js.ans6clicked;
-var ans7=scripts.js.ans7clicked;
-var ans8=scripts.js.ans8clicked;
-var ans9=scripts.js.ans9clicked;
-var ans10=scripts.js.ans10clicked;
-var ans11=scripts.js.ans11clicked;
-var ans12=scripts.js.ans12clicked;
+var ans1=0;
+var ans2=0;
+var ans3=0;
+var ans4=0;
+var ans5=0;
+var ans6=0;
+var ans7=0;
+var ans8=0;
+var ans9=0;
+var ans10=0;
+var ans11=0;
+var ans12=0;
 
 var q1score=0;
-var q1attemtps=(ans1+ans2+ans3+ans4);
+var q1attemtps=0;
 
 var q2score=0;
-var q2attemtps=0(ans5+ans6+ans7+ans8);
+var q2attemtps=0;
 
 var q3score=0;
-var q3attemtps=(ans9+ans10+ans11+ans12);
+var q3attemtps=0;
 
 var q1answers = {
     "blue" : ans1/q1attemtps,
