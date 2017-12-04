@@ -2,8 +2,8 @@ var myCanvas = document.getElementById("myCanvas");
 var myCanvas2 = document.getElementById("myCanvas2");
 var myCanvas3 = document.getElementById("myCanvas3");
 var ctx = myCanvas.getContext("2d");
-var ctx = myCanvas2.getContext("2d");
-var ctx = myCanvas3.getContext("2d");
+var ctx2 = myCanvas2.getContext("2d");
+var ctx3 = myCanvas3.getContext("2d");
 
 var ans1=0;
 var ans2=0;
