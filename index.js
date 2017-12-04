@@ -7,13 +7,6 @@ var express = require('express'),
 
 var app = express();
 
-var checkAuth = function(req, res, next) {
-  if(req.session.user && req.session.user.isAuthenticated){
-    next();
-  }else{
-    res.redirect('/');
-  }
-}
 
 app.set('view engine', 'pug');
 app.set('views', __dirname+'/views');
@@ -27,10 +20,12 @@ app.use(expressSession({
 
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
-app.get('/', route.graphs);
+app.get('/', route.login);
+app.get('/index', route.index);
+app.get('/graphs', route.graphs);
 app.get('/loginpage', route.loginpage);
 app.get('/admin',route.checkAuth, route.admin);
-//  app.get('/admin', route.admin);
+app.get('/Admin', route.admin);
 app.get('/create', route.create);
 app.get('/edit/:id', route.edit);
 app.get('/details/:id', route.details);

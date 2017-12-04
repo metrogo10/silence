@@ -103,7 +103,7 @@ exports.createPerson = function (req, res) {
     console.log(req.body.UserName + ' added');
     console.log(req.body.Password + ' pass');
   });
-  res.redirect('/');
+  res.redirect('/index');
 };
 
 exports.edit = function (req, res) {
@@ -131,14 +131,14 @@ exports.editPerson = function (req, res) {
       console.log(req.body.UserName + ' updated');
     });
   });
-  res.redirect('/admin');
+  res.redirect('/index');
 
 };
 
 exports.delete = function (req, res) {
   Person.findByIdAndRemove(req.params.id, function (err, person) {
     if (err) return console.error(err);
-    res.redirect('/admin');
+    res.redirect('/index');
   });
 };
 
@@ -173,9 +173,9 @@ exports.login = function (req, res) {
         isAuthenticated: true,
         username: req.body.username
       };
-      res.redirect('/admin');
+      res.redirect('/Admin');
     } else {
-      res.redirect('/');
+      res.redirect('/index');
     }
   // });
 }
@@ -193,8 +193,8 @@ exports.checkAuth = function (req, res, next) {
 exports.admin = function (req, res) {
   Person.find(function (err, person) {
     if (err) return console.log(err);
-    res.render("index", {
-title: "User List",
+    res.render("Admin", {
+title: "Admin Page",
 people: person
     });
   });
