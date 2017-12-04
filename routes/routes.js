@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/data');
-
+//mongoose.Promise = global.Promise;
+//mongoose.connect('mongodb://localhost/data');
+var promise = mongoose.connect('mongodb://localhost/data', {useMongoClient: true,});
 var bcrypt = require('bcrypt-nodejs');
 var myHash;
 

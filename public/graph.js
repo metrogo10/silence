@@ -1,21 +1,22 @@
 var myCanvas = document.getElementById("myCanvas");
-myCanvas.width = 300;
-myCanvas.height = 300;
-  
+var myCanvas2 = document.getElementById("myCanvas2");
+var myCanvas3 = document.getElementById("myCanvas3");
 var ctx = myCanvas.getContext("2d");
+var ctx = myCanvas2.getContext("2d");
+var ctx = myCanvas3.getContext("2d");
 
-var ans1=scripts.js.ans1;
-var ans2=scripts.js.ans2;
-var ans3=scripts.js.ans3;
-var ans4=scripts.js.ans4;
-var ans5=scripts.js.ans5;
-var ans6=scripts.js.ans6;
-var ans7=scripts.js.ans7;
-var ans8=scripts.js.ans8;
-var ans9=scripts.js.ans9;
-var ans10=scripts.js.ans10;
-var ans11=scripts.js.ans11;
-var ans12=scripts.js.ans12;
+var ans1=scripts.js.ans1clicked;
+var ans2=scripts.js.ans2clicked;
+var ans3=scripts.js.ans3clicked;
+var ans4=scripts.js.ans4clicked;
+var ans5=scripts.js.ans5clicked;
+var ans6=scripts.js.ans6clicked;
+var ans7=scripts.js.ans7clicked;
+var ans8=scripts.js.ans8clicked;
+var ans9=scripts.js.ans9clicked;
+var ans10=scripts.js.ans10clicked;
+var ans11=scripts.js.ans11clicked;
+var ans12=scripts.js.ans12clicked;
 
 var q1score=0;
 var q1attemtps=(ans1+ans2+ans3+ans4);
@@ -151,7 +152,7 @@ var myBarchart = new Barchart(
         canvas:myCanvas,
         seriesName:"Question 1 Stats",
         padding:20,
-        gridScale:5,
+        gridScale:2,
         gridColor:"#eeeeee",
         data:q1answers,
         colors:["#a55ca5","#67b6c7", "#bccd7a","#eb9743"]
@@ -174,7 +175,7 @@ var myBarchart3 = new Barchart(
         canvas:myCanvas3,
         seriesName:"Question 3 Stats",
         padding:20,
-        gridScale:7,
+        gridScale:2,
         gridColor:"#eeeeee",
         data:q3answers,
         colors:["#a55ca5","#67b6c7", "#bccd7a","#eb9743"]
